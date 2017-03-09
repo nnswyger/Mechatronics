@@ -1,0 +1,17 @@
+Initialize pins, etc.
+
+main loop:
+  check sensor
+  check control pot (port A pin 0)
+    convert from analog to digital
+    
+  check green button
+    if pressed: enter new mode (when restarting the microconroller must press this to enter mode 1)
+    swicht LED indicator lights to indicate mode
+  
+  check red button (port C pin 1)
+    mode 1:if pressed: toggle transistor gate (moving actuator) (with port D output pin) 
+    mode 2:if pressed: Activate acuator for X seconds (If the pushbutton is pressed and released in the middle of the timeout, the timer will be restarted
+    from that point.)
+        check control pot (Port A pin 0): (for mode 2: determines X seconds): convert from analog to digital: X = .25*(digital output value)...Store X as count...maximum = 64 seconds... min = 0 sec shoudl return fault light up LEDS. 
+    mode 3:if pressed: toggle control on/off: Active- turn on LED, inactive - turn off LED
