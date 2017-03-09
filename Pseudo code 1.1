@@ -1,0 +1,22 @@
+Initialize pins, etc.
+
+main loop:
+  check sensor
+    mode 4: wait 10 seconds, if the solenoid has not retracted indicate fault.
+  check control pot (port A pin 0)
+    convert from analog to digital
+    if 0 return fault (except mode 1)
+    convert from analog to digital: X = .25*(digital output value)...Store X in "Count" register...
+    mode 3: if value> 112(decimal) solenoid engage , value<112(decimal solenoid disengage
+    
+  check green button
+    if pressed: enter new mode (when restarting the microconroller must press this to enter mode 1)
+    swicht LED indicator lights to indicate mode
+  
+  check red button (port C pin 1)
+    mode 1:if pressed: toggle transistor gate (moving actuator) (with port D output pin) 
+    mode 2:if pressed: Activate acuator for X seconds ("If the pushbutton is pressed and released in the middle of the timeout, the timer will be restarted
+    from that point.")
+        check control pot (Port A pin 0): (for mode 2: determines X seconds):
+    mode 3:if pressed: toggle control on/off: Active- turn on LED, inactive - turn off LED
+    mode 4: same as mode 2 except sensor overide after 10 seconds
